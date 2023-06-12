@@ -1,4 +1,4 @@
-# Java Web Application
+# Java Web Application added by user
 
 - Developed using Maven
 - Uses Apache TomCat for deployment and testing
