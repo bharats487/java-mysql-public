@@ -17,11 +17,6 @@ spec:
         - name: mysql
           image: $DB_IMAGE
           env:
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-root-password
-                  key: password
             - name: MYSQL_USER
               value: $DB_USER
             - name: MYSQL_PASSWORD
