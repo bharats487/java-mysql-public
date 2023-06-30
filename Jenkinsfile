@@ -46,5 +46,16 @@ pipeline {
     }
     
   }
+          stage('Download Artifact') {
+            steps {
+                script {
+                    nexusArtifactDownloader nexusUrl: '192.168.0.34:8081',
+                     groupId: 'com.abhiram', artifactId: 'servletapplication',
+                      version: "${mavenPom.version}", packaging: 'war', 
+                      repository: 'java-app', target: 'target'
+                }
+            }
+        }
+       
   }
   }
