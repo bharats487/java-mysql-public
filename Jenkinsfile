@@ -24,7 +24,7 @@ pipeline {
     
     stage('SonarQube Analysis') {
         steps{
-            withSonarQubeEnv('SonarQube') {
+            withSonarQubeEnv('sonarqube') {
                 sh "mvn sonar:sonar"
         }
     }
@@ -37,7 +37,7 @@ pipeline {
             classifier: '',
             file: 'target/servletapplication.war', 
             type: 'war']], 
-            credentialsId: 'Nexus', groupId: 'com.abhiram', 
+            credentialsId: 'nexus', groupId: 'com.abhiram', 
             nexusUrl: '192.168.0.34:8081', nexusVersion: 'nexus3', 
             protocol: 'http', repository: 'java-app', 
             version: "${mavenPom.version}"
@@ -46,5 +46,16 @@ pipeline {
     }
     
   }
+          stage('Download Artifact') {
+            steps {
+                script {
+                    nexusArtifactDownloader nexusUrl: '192.168.0.34:8081',
+                     groupId: 'com.abhiram', artifactId: 'servletapplication',
+                      version: "1.0.0", packaging: 'war', 
+                      repository: 'java-app', target: 'target'
+                }
+            }
+        }
+  
   }
-  }
+}
