@@ -17,12 +17,12 @@ spec:
         - name: tomcat
           image: $APP_IMAGE
           ports:
-            - containerPort: $APP_PORT
+            - containerPort: 8085
           env:
             - name: DB_HOST
               value: mysql
             - name: DB_PORT
-              value: $DB_PORT
+              value: 3306
             - name: DB_NAME
               value: $DB_NAME
             - name: DB_USER
