@@ -1,0 +1,47 @@
+pipeline {
+  agent any
+
+  environment {
+    KUBECONFIG = credentials('kubeconfig')
+    APP_NAME = 'servletapplication'
+    APP_IMAGE = 'bharats487/servletapplication'
+    APP_PORT = 8085
+    DB_NAME = 'servlet_application'
+    DB_IMAGE = 'mysql:latest'
+    DB_PORT = 3306
+    DB_ROOT_PASSWORD = credentials('mysql-root-password')
+    DB_USER = 'root'
+    DB_PASSWORD = credentials('mysql-password')
+    NGINX_NAME = 'example-nginx'
+    NGINX_IMAGE = 'nginx:latest'
+    NGINX_PORT = 80
+  }
+
+  stages {
+    stage('Deploy MySQL') {
+      steps {
+        sh '''
+         // kubectl create secret generic mysql-root-password --from-literal=password="$DB_ROOT_PASSWORD"
+          kubectl create secret generic mysql-password --from-literal=password="$DB_PASSWORD"
+          kubectl apply -f mysql-deployment.yaml
+        '''
+      }
+    }
+
+    stage('Deploy Tomcat') {
+      steps {
+        sh '''
+          kubectl apply -f tomcat-deployment.yaml
+        '''
+      }
+    }
+
+    stage('Deploy Nginx') {
+      steps {
+        sh '''
+          kubectl apply -f nginx-deployment.yaml
+        '''
+      }
+    }
+  }
+}
