@@ -20,7 +20,7 @@ spec:
             - containerPort: 8085
           env:
             - name: DB_HOST
-              value: mysql
+              value: "servlet_application"
             - name: DB_PORT
               value: 3306
             - name: DB_NAME
