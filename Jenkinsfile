@@ -20,11 +20,20 @@ pipeline {
             }
         }
 
-        stage('Sonarqube'){
+        stage('static code analysis: sonarqube'){
             steps{
                 script{
                     def sonarQubcredentialsId = 'jenkin'
                     staticCodeAnalysis(sonarQubcredentialsId)
+                }
+            }
+        }
+
+        stage('quality Gate status check: sonarqube'){
+            steps{
+                script{
+                    def sonarQubcredentialsId = 'jenkin'
+                    QualityGatestatus(sonarQubcredentialsId)
                 }
             }
         }
