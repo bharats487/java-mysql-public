@@ -4,7 +4,7 @@ pipeline {
     agent any
     parameters {
         choice(name: 'action', choices: 'create\ndelete', description: 'choose create/Destry')
-        string(name: 'ImageName', description:'Name of the docker build', defaultValue: 'serverletapplication')
+        string(name: 'ImageName', description:'Name of the docker build', defaultValue: 'java-app')
         string(name: 'ImageTag', description:'tag of the docker build', defaultValue: 'v1')
         string(name: 'AppName', description:'name of the application', defaultValue: 'springboot')
     }
