@@ -23,7 +23,8 @@ pipeline {
         stage('Sonarqube'){
             steps{
                 script{
-                    staticCodeAnalysis()
+                    def sonarQubcredentialsId = 'jenkin'
+                    staticCodeAnalysis(sonarQubcredentialsId)
                 }
             }
         }
