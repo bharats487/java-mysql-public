@@ -7,8 +7,8 @@ pipeline {
         stage('Git Checkout'){
             steps{
                 gitCheckout(
-                    branch: "master",
-                    url: "https://github.com/bharats487/spring-boot-mysql-rest-api-tutorial.git"
+                    branch: "main",
+                    url: "https://github.com/bharats487/java-mysql-public.git"
                 )
             }
         }
