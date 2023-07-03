@@ -20,7 +20,13 @@ pipeline {
             }
         }
 
-
+        stage('Sonarqube'){
+            steps{
+                script{
+                    staticCodeAnalysis()
+                }
+            }
+        }
 
 
     }
