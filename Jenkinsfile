@@ -52,6 +52,7 @@ pipeline {
         }
 
         stage('Docker Image Build'){
+            when {expression {params.action == 'create'}}
             steps{
                 script{
                     dockerBuild("${param.ImageName}","${param.ImageTag}","${param.AppName}")
