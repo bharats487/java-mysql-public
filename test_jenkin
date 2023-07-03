@@ -1,0 +1,34 @@
+pipeline {
+
+    agent any
+
+    environment {
+    //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
+    IMAGE = readMavenPom().getArtifactId()
+    VERSION = readMavenPom().getVersion()
+    }
+
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        git branch: 'main', url: 'https://github.com/bharats487/java-mysql-public.git'
+      }
+    }
+
+
+
+    stages {
+
+        stage('Test') {
+            steps {
+                echo "${VERSION}"
+            }
+
+        }
+
+    }
+
+}
+}
