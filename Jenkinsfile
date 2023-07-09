@@ -69,5 +69,15 @@ pipeline {
             }
         }
 
+        stage('Upload to DockerHub') {
+            steps {
+                script{
+                    def credentialsId = 'docker_hub'
+                    PushDockerImage(credentialsId)
+                }
+            }
+            }
+
+
     }
 }
