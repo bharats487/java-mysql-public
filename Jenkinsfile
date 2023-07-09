@@ -70,10 +70,11 @@ pipeline {
         }
 
         stage('Upload to DockerHub') {
+            when {expression {params.action == 'create'}}
             steps {
                 script{
                     def credentialsId = 'docker_hub'
-                    PushDockerImage(credentialsId)
+                    PushDockerImage(credentialsId, "${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                 }
             }
             }

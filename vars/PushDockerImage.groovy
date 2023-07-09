@@ -1,8 +1,9 @@
-def call(credentialsId) {
+def call(credentialsId, String project, String ImageTag ,String hubUser ) {
   stage("Push to DockerHub") {
     withDockerRegistry(credentialsId: credentialsId) {
       sh """
-      docker push bharats487/java-app:latest
+      docker push ${hubUser}/${project}:${ImageTag}
+      docker push ${hubUser}/${project}:latest
       """
     }
   }
