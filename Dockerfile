@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk
 WORKDIR /app
 COPY ./target/*.war /app.war
-CMD ["java", "-jar","app.war" ]
+CMD ["java", "-war","app.war" ]
