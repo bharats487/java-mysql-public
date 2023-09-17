@@ -22,7 +22,7 @@ public class database {
 
     public void put_data(String Username, String Password, String date_of_birth) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://mydatabase.cmrpvkwobt9m.us-east-1.rds.amazonaws.com:3306/", "root", this.password);
+        Connection con = DriverManager.getConnection("jdbc:mysql://mysql:3306/", "root", this.password);
         Statement stmt1 = con.createStatement();
         stmt1.executeUpdate("CREATE DATABASE IF NOT EXISTS servlet_application ;");
         stmt1.executeUpdate("USE servlet_application;");
@@ -54,7 +54,7 @@ public class database {
     public void get_data(HttpServletRequest request, HttpServletResponse response)
             throws ClassNotFoundException, SQLException, IOException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://mydatabase.cmrpvkwobt9m.us-east-1.rds.amazonaws.com:3306/servlet_application", "root",
+        Connection con = DriverManager.getConnection("jdbc:mysql://mysql:3306/servlet_application", "root",
                 this.password);
         Statement stmt = con.createStatement();
         ResultSet rs1 = stmt.executeQuery("SELECT * FROM store_user ORDER BY date_register;");
@@ -71,7 +71,7 @@ public class database {
     public void login(String username, String password, HttpServletRequest request, HttpServletResponse response)
             throws ClassNotFoundException, SQLException, IOException, ServletException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://mydatabase.cmrpvkwobt9m.us-east-1.rds.amazonaws.com:3306/servlet_application", "root",
+        Connection con = DriverManager.getConnection("jdbc:mysql://mysql:3306/servlet_application", "root",
                 this.password);
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM store_user WHERE Username=" + "'" + username + "';");
@@ -103,7 +103,7 @@ public class database {
 
     public void delete_row(String username) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://mydatabase.cmrpvkwobt9m.us-east-1.rds.amazonaws.com:3306/servlet_application", "root",
+        Connection con = DriverManager.getConnection("jdbc:mysql://mysql:3306/servlet_application", "root",
                 this.password);
         Statement stmt = con.createStatement();
 
@@ -119,7 +119,7 @@ public class database {
     public void update_row(String username, String oldPassword, String newPassword)
             throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://mydatabase.cmrpvkwobt9m.us-east-1.rds.amazonaws.com:3306/servlet_application", "root",
+        Connection con = DriverManager.getConnection("jdbc:mysql://mysql:3306/servlet_application", "root",
                 this.password);
         Statement stmt = con.createStatement();
 
